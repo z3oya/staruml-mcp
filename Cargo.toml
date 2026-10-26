@@ -1,0 +1,21 @@
+[package]
+name = "staruml-mcp"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+description = "StarUML MCP Server — Rust rewrite of staruml/staruml-mcp-server (4 tools over stdio, proxying StarUML v7's built-in HTTP API)"
+
+[dependencies]
+rmcp = { version = "3.7", features = ["server", "macros", "transport-io"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+schemars = "1"
+reqwest = { version = "0.12", default-features = false, features = ["json"] }
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[profile.release]
+strip = true
+lto = true
